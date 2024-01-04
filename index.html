@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLOW GUIDE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="icon" href="assets/images/guide.png">
+</head>
+<body>
+
+    <div id="logo-container">
+        <img src="assets/images/guide.png" alt="Glow Guide">
+    </div>
+    
+    <div id="login-container">
+        <form action="your_server_side_authentication_endpoint" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your email">
+
+            <label for="password">Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <i class="far fa-eye" id="togglePassword" onclick="togglePassword()"></i>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var showPasswordIcon = document.getElementById("togglePassword");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                showPasswordIcon.classList.remove("far");
+                showPasswordIcon.classList.add("fas");
+            } else {
+                passwordField.type = "password";
+                showPasswordIcon.classList.remove("fas");
+                showPasswordIcon.classList.add("far");
+            }
+        }
+
+        var usernameInput = document.getElementById("username");
+        var passwordInput = document.getElementById("password");
+
+        function handlePlaceholder(inputElement, defaultPlaceholder) {
+            inputElement.onfocus = function () {
+                this.placeholder = '';
+            };
+
+            inputElement.onblur = function () {
+                if (this.value === '') {
+                    this.placeholder = defaultPlaceholder;
+                }
+            };
+
+            inputElement.oninput = function () {
+                if (this.value === '') {
+                    this.placeholder = defaultPlaceholder;
+                } else {
+                    this.placeholder = '';
+                }
+            };
+        }
+
+        handlePlaceholder(usernameInput, 'Enter your email');
+        handlePlaceholder(passwordInput, 'Enter your password');
+    </script>
+</body>
+</html>
